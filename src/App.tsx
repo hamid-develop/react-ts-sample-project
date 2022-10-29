@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import List from "./components/List";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface IPeople {
+  name: string;
+  age: number;
+  img_url: string;
+  bio?: string;
 }
 
+const App = () => {
+  const [people, setPeople] = useState<IPeople[]>([
+    {
+      name: "hamidreza",
+      age: 33,
+      img_url:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTya0RHNcirVnmNSqh1P0lu8IVlFPSMiRuzcw&usqp=CAU",
+      bio: "tehrani",
+    },
+  ]);
+
+  return (
+    <div className="container">
+      <h4 className="alert alert-info">مدیریت کننده اشخاص</h4>
+      <List people={people} />
+    </div>
+  );
+};
 export default App;
