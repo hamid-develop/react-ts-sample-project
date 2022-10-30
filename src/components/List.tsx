@@ -1,11 +1,5 @@
 import { FC } from "react";
-
-interface IPeople {
-  name: string;
-  age: number;
-  img_url: string;
-  bio?: string;
-}
+import { IPeople } from "../App";
 
 interface IProps {
   people: IPeople[];
@@ -14,10 +8,10 @@ interface IProps {
 const List: FC<IProps> = ({ people }) => {
   const renderList: JSX.Element[] = people.map((person) => (
     <div className="col-12 col-lg-6">
-      <div className="card">
+      <div className="card mb-3">
         <div className="card-body d-flex justify-content-center ">
           <img
-            src={person.img_url}
+            src={person.img}
             alt="profile-img"
             width={100}
             height={100}
