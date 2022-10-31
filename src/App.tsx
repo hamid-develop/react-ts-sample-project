@@ -3,6 +3,7 @@ import List from "./components/List";
 import AddPeople from "./components/AddPeople";
 
 export interface IPeople {
+  id: number;
   name: string;
   age: number | string;
   img : string;
@@ -12,6 +13,7 @@ export interface IPeople {
 const App = () => {
   const [people, setPeople] = useState<IPeople[]>([
     {
+      id: 1,
       name: "hamidreza",
       age: 33,
       img:
@@ -23,7 +25,7 @@ const App = () => {
   return (
     <div className="container">
       <h4 className="alert alert-info">مدیریت کننده اشخاص</h4>
-      <List people={people} />
+      <List people={people} setPeople={setPeople} />
       <AddPeople people={people} setPeople={setPeople} />
     </div>
   );

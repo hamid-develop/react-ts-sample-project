@@ -1,13 +1,21 @@
-import { FC } from "react";
+import { FC, Dispatch, SetStateAction } from "react";
 import { IPeople } from "../App";
+import { AiOutlineUserDelete } from "react-icons/ai";
+import EditModal from './EditModal'
 
 interface IProps {
   people: IPeople[];
+  setPeople: Dispatch<SetStateAction<IPeople[]>>;
 }
 
-const List: FC<IProps> = ({ people }) => {
+const List: FC<IProps> = ({ people, setPeople }) => {
+  const handleDeletePerson = (id: number): void => {
+    const filteredPeople: IPeople[] = people.filter((p) => p.id !== id);
+    setPeople(filteredPeople);
+  };
+
   const renderList: JSX.Element[] = people.map((person) => (
-    <div className="col-12 col-lg-6">
+    <div key={person.id} className="col-12 col-lg-6">
       <div className="card mb-3">
         <div className="card-body d-flex justify-content-center ">
           <img
@@ -23,6 +31,15 @@ const List: FC<IProps> = ({ people }) => {
               <h4>{person.name}</h4>
             </span>
             <div className="text-muted">{person.bio}</div>
+          </div>
+          <div className="operation_btns">
+            <EditModal person={person} people={people} setPeople={setPeople} />
+            <AiOutlineUserDelete
+              size={30}
+              className="text-danger"
+              cursor="pointer"
+              onClick={() => handleDeletePerson(person.id)}
+            />
           </div>
         </div>
       </div>
